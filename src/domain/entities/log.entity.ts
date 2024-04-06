@@ -43,4 +43,19 @@ export class LogEntity{
 
         return log;
     }
+
+    static fromObject = ( obj: {[key: string]: any} ):LogEntity =>{
+        const { message , level, createdAt, origin } = obj;
+
+        if( !message || !level || !createdAt ){
+            throw new Error('Invalid log entity');
+        }
+
+        return new LogEntity({
+            message,
+            level, 
+            createdAt,
+            origin
+        });
+    }
 }
